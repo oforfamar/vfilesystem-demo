@@ -1,11 +1,25 @@
 {
     "name": "trainig/vfilesystem-demo",
+    "type": "library",
     "description": "Virtual filesystem implementation meant to teach coding & software architecture best practices",
     "authors": [
         {
             "name": "Tudor Roman",
             "email": "tudor.roman@code932.com"
+        },
+        {
+            "name": "Vlad Balmos",
+            "email": "vlad.balmos@code932.com"
         }
     ],
-    "require": {}
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "5.4.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "VFilesystem\\": "src/",
+            "VFilesystem\\Tests\\": "tests/src/"
+        }
+    }
 }
