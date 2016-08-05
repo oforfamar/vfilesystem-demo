@@ -66,25 +66,25 @@ class Directory
     }
 
     /**
-     * @return mixed
+     * @return Directory
      */
-    public function getParent()
+    public function getParent() : Directory
     {
         return $this->parent;
     }
 
     /**
-     * @return mixed
+     * @return \DateTime
      */
-    public function getCreatedDate()
+    public function getCreatedDate() : \DateTime
     {
         return $this->createdDate;
     }
 
     /**
-     * @return mixed
+     * @return \DateTime
      */
-    public function getUpdatedDate()
+    public function getUpdatedDate() : \DateTime
     {
         return $this->updatedDate;
     }
