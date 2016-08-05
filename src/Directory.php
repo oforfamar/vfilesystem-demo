@@ -4,15 +4,36 @@ namespace VFilesystem;
 
 class Directory
 {
-
+    /**
+     * @var string
+     */
     private $name;
+
+    /**
+     * @var int|int
+     */
     private $mode;
+
+    /**
+     * @var bool|bool
+     */
     private $recursive;
 
+    /**
+     * @var Directory
+     */
     private $parent;
-    private $permissions;
+
+    /**
+     * @var \DateTime
+     */
     private $createdDate;
+
+    /**
+     * @var \DateTime
+     */
     private $updatedDate;
+
 
     /**
      * @param string $name
@@ -24,6 +45,8 @@ class Directory
         $this->name = $name;
         $this->mode = $mode;
         $this->recursive = $recursive;
+        $this->createdDate = new \DateTime();
+        $this->updatedDate = new \DateTime();
     }
 
     /**
@@ -35,19 +58,19 @@ class Directory
     }
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getParent()
+    public function getMode() : int
     {
-        return $this->parent;
+        return $this->mode;
     }
 
     /**
      * @return mixed
      */
-    public function getPermissions()
+    public function getParent()
     {
-        return $this->permissions;
+        return $this->parent;
     }
 
     /**

@@ -13,15 +13,22 @@ class VFilesystemTest extends TestCase
         $this->assertTrue(class_exists('VFilesystem\\VFilesystem'), "Checking that class is loaded");
     }
 
-    public function testCreatesNewDirectory()
+    public function testCreatesNewDirectoryAndProperties()
     {
         $filesystem = new VFilesystem();
 
         $dirname = 'test_folder';
-        $virtualDir = $filesystem->mkdir($dirname);
+        $mode    = 0777;
+        $virtualDir = $filesystem->mkdir($dirname, $mode);
 
         $this->assertInstanceOf(\VFilesystem\Directory::class, $virtualDir);
+
         $this->assertEquals($virtualDir->getName(), $dirname);
+        $this->assertEquals($virtualDir->getMode(), $mode);
+
+        $now = new \DateTime();
+        $this->assertEquals($virtualDir->getCreatedDate(), $now);
+        $this->assertEquals($virtualDir->getUpdatedDate(), $now);
     }
 
 }
