@@ -2,14 +2,12 @@
 
 namespace VFilesystem;
 
-class VFilesystem
+class VFilesystem extends Directory
 {
 
-    public function mkdir($dirname, $mode = 0777, $recursive = false)
+    public function __construct()
     {
-        $dir = new Directory($dirname, $mode, $recursive);
-
-        return $dir;
+        parent::__construct('/', 0755, false);
     }
 
 }

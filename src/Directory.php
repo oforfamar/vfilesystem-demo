@@ -2,38 +2,18 @@
 
 namespace VFilesystem;
 
-class Directory
+class Directory extends FilesystemNode
 {
-    /**
-     * @var string
-     */
-    private $name;
 
     /**
-     * @var int|int
+     * @var array
      */
-    private $mode;
+    private $children;
 
     /**
      * @var bool|bool
      */
     private $recursive;
-
-    /**
-     * @var Directory
-     */
-    private $parent;
-
-    /**
-     * @var \DateTime
-     */
-    private $createdDate;
-
-    /**
-     * @var \DateTime
-     */
-    private $updatedDate;
-
 
     /**
      * @param string $name
@@ -50,42 +30,46 @@ class Directory
     }
 
     /**
-     * @return string
+     * @param string $dirname
+     * @param int $mode Octal
+     * @param bool $recursive
+     * @returns Directory
      */
-    public function getName() : string
+    public function mkdir($dirname, $mode = 0777, $recursive = false) : Directory
     {
-        return $this->name;
+        $dir = new Directory($dirname, $mode, $recursive);
+        // @todo: persist directory
+
+        $this->addChild($dir);
+        return $dir;
     }
 
     /**
-     * @return int
+     * @return array
      */
-    public function getMode() : int
+    public function ls() : array
     {
-        return $this->mode;
+        return $this->children;
     }
 
     /**
-     * @return Directory
+     * @param string $name
+     * @return File
      */
-    public function getParent() : Directory
+    public function createFile($name)
     {
-        return $this->parent;
+        $file = new File($name);
+        // @todo: persist file
+
+        $this->addChild($file);
+        return $file;
     }
 
     /**
-     * @return \DateTime
+     * @param Directory|File $child
      */
-    public function getCreatedDate() : \DateTime
+    private function addChild($child)
     {
-        return $this->createdDate;
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getUpdatedDate() : \DateTime
-    {
-        return $this->updatedDate;
+        $this->children[] = $child;
     }
 }
