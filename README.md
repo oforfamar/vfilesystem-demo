@@ -5,10 +5,10 @@ VFilesystem
     - init
     - Directory:mkdir(...)
     - rmdir(...)
-
+    - ls()
+    - createFile(...)
 
 StorageInterface
    |- MemoryStorage
    |- FilesystemStorage
    |- MysqlStorage
-
