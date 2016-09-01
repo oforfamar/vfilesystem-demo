@@ -4,9 +4,23 @@ namespace VFilesystem\Tests;
 
 use PHPUnit\Framework\TestCase;
 use VFilesystem\VFilesystem;
+use VFilesystem\Storage\Memory as MemoryStorage;
 
 class VFilesystemTest extends TestCase
 {
+
+    /**
+     * @var VFilesystem
+     */
+    private $filesystem;
+
+    protected function setUp()
+    {
+        $config = [
+            'storage' => new MemoryStorage()
+        ];
+        $this->filesystem = new VFilesystem($config);
+    }
 
     public function testClassIsLoaded()
     {
@@ -15,7 +29,7 @@ class VFilesystemTest extends TestCase
 
     public function testCreatesNewDirectory()
     {
-        $filesystem = new VFilesystem();
+        $filesystem = $this->filesystem;
 
         $dirname = 'test_folder';
         $mode    = 0777;
@@ -26,7 +40,7 @@ class VFilesystemTest extends TestCase
 
     public function testDirectoryProperties()
     {
-        $filesystem = new VFilesystem();
+        $filesystem = $this->filesystem;
 
         $dirname = 'test_folder';
         $mode    = 0777;
@@ -42,7 +56,7 @@ class VFilesystemTest extends TestCase
 
     public function testCreatesSubdirectory()
     {
-        $filesystem = new VFilesystem();
+        $filesystem = $this->filesystem;
 
         $dirname = 'parent_folder';
         $mode    = 0777;
@@ -55,7 +69,7 @@ class VFilesystemTest extends TestCase
 
     public function testCreatesEmptyFile()
     {
-        $filesystem = new VFilesystem();
+        $filesystem = $this->filesystem;
 
         $name = 'my_file';
         $file = $filesystem->createFile($name);
