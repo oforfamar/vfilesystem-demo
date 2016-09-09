@@ -32,7 +32,7 @@ class File extends FilesystemNode
     /**
      * @return string
      */
-    public function read()
+    public function read() : string
     {
         // @todo: use a generator system to yield the contents of the file from the actual storage
         return $this->content;

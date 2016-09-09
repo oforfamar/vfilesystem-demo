@@ -15,9 +15,9 @@ abstract class FilesystemNode
     protected $mode;
 
     /**
-     * @var Directory
+     * @var Directory|null
      */
-    protected $parent;
+    protected $parent = null;
 
     /**
      * @var \DateTime

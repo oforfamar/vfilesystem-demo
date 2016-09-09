@@ -15,7 +15,7 @@ class VFilesystem extends Directory
     /**
      * @var StorageInterface
      */
-    private $storageDriver;
+    protected $storageDriver;
 
     /**
      * @param array $config

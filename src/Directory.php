@@ -38,7 +38,8 @@ class Directory extends FilesystemNode
     public function mkdir($dirname, $mode = 0777, $recursive = false) : Directory
     {
         $dir = new Directory($dirname, $mode, $recursive);
-        // @todo: persist directory
+
+        $this->storageDriver->save($dir);
 
         $this->addChild($dir);
         return $dir;
