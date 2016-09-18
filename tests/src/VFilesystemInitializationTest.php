@@ -8,7 +8,6 @@ use VFilesystem\Storage\Memory as MemoryStorage;
 
 class VFilesystemInitializationTest extends TestCase
 {
-
     /**
      * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage Missing the storage
@@ -17,7 +16,6 @@ class VFilesystemInitializationTest extends TestCase
     {
         VFilesystem::init([]);
     }
-
 
     /**
      * @expectedException \InvalidArgumentException
@@ -32,14 +30,13 @@ class VFilesystemInitializationTest extends TestCase
 
     public function testInitialization()
     {
-        $memoryStorage = new MemoryStorage();
+        $memoryStorage = new MemoryStorage(['root' => '/']);
         $config = [
-            'storage' => $memoryStorage
+            'storage' => $memoryStorage,
         ];
         VFilesystem::init($config);
 
         $instance = VFilesystem::getInstance();
         $this->assertEquals($memoryStorage, $instance->getStorage());
     }
-
 }

@@ -46,11 +46,19 @@ abstract class FilesystemNode
     }
 
     /**
-     * @return Directory
+     * @return null|Directory
      */
-    public function getParent() : Directory
+    public function getParent()
     {
         return $this->parent;
+    }
+
+    /**
+     * @param null|Directory $parent
+     */
+    public function setParent($parent)
+    {
+        $this->parent = $parent;
     }
 
     /**

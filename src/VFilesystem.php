@@ -29,6 +29,11 @@ class VFilesystem extends Directory
         $this->storageDriver = $config['storage'];
     }
 
+    /**
+     * @param array $config
+     *
+     * @throws \InvalidArgumentException
+     */
     private function validateConfig(array $config)
     {
         if (!isset($config['storage'])) {
@@ -64,7 +69,7 @@ class VFilesystem extends Directory
     /**
      * @return StorageInterface
      */
-    public function getStorage()
+    public function getStorage() : StorageInterface
     {
         return $this->storageDriver;
     }

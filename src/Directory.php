@@ -31,18 +31,29 @@ class Directory extends FilesystemNode
 
     /**
      * @param string $dirname
-     * @param int $mode Octal
-     * @param bool $recursive
+     * @param int    $mode Octal
+     * @param bool   $recursive
+     *
      * @returns Directory
      */
     public function mkdir($dirname, $mode = 0777, $recursive = false) : Directory
     {
         $dir = new Directory($dirname, $mode, $recursive);
+        $dir->setParent($this);
 
         $this->storageDriver->save($dir);
 
         $this->addChild($dir);
+
         return $dir;
+    }
+
+    /**
+     * @param Directory|File $child
+     */
+    private function addChild($child)
+    {
+        $this->children[] = $child;
     }
 
     /**
@@ -55,6 +66,7 @@ class Directory extends FilesystemNode
 
     /**
      * @param string $name
+     *
      * @return File
      */
     public function createFile($name)
@@ -63,14 +75,7 @@ class Directory extends FilesystemNode
         // @todo: persist file
 
         $this->addChild($file);
-        return $file;
-    }
 
-    /**
-     * @param Directory|File $child
-     */
-    private function addChild($child)
-    {
-        $this->children[] = $child;
+        return $file;
     }
 }
